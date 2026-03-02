@@ -1,40 +1,27 @@
-@import "tailwindcss";
-@import "tw-animate-css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  width: 100%;
   font-weight: normal;
 }
 
-a,
-.green {
+a {
   text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
   transition: 0.4s;
-  padding: 3px;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
+/* Utility class for Montserrat SemiBold */
+.montserrat-semibold {
+  font-family: 'Montserrat', Arial, sans-serif;
+  font-weight: 600;
 }
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
+.montserrat-normal {
+  font-family: 'Montserrat', Arial, sans-serif;
+  font-weight: normal;
 }
 
 @theme inline {
@@ -78,23 +65,23 @@ a,
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
-  --foreground: oklch(0.141 0.005 285.823);
+  --foreground: oklch(0.141 0.005 260);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.141 0.005 285.823);
+  --card-foreground: oklch(0.141 0.005 260);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.141 0.005 285.823);
-  --primary: oklch(0.21 0.006 285.885);
+  --popover-foreground: oklch(0.141 0.005 260);
+  --primary: oklch(0.51 0.22 262);
   --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.967 0.001 286.375);
-  --secondary-foreground: oklch(0.21 0.006 285.885);
-  --muted: oklch(0.967 0.001 286.375);
-  --muted-foreground: oklch(0.552 0.016 285.938);
-  --accent: oklch(0.967 0.001 286.375);
-  --accent-foreground: oklch(0.21 0.006 285.885);
+  --secondary: oklch(0.96 0.015 262);
+  --secondary-foreground: oklch(0.3 0.12 262);
+  --muted: oklch(0.967 0.004 262);
+  --muted-foreground: oklch(0.55 0.02 262);
+  --accent: oklch(0.96 0.015 262);
+  --accent-foreground: oklch(0.3 0.12 262);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.92 0.004 286.32);
-  --input: oklch(0.92 0.004 286.32);
-  --ring: oklch(0.705 0.015 286.067);
+  --border: oklch(0.91 0.008 262);
+  --input: oklch(0.91 0.008 262);
+  --ring: oklch(0.65 0.15 262);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -150,5 +137,41 @@ a,
   }
   body {
     @apply bg-background text-foreground;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: normal;
   }
+}
+
+/* Hero: gradient text (headline & stat values) */
+.text-gradient-primary {
+  background: linear-gradient(135deg, oklch(0.51 0.22 262), oklch(0.45 0.2 280));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dark .text-gradient-primary {
+  background: linear-gradient(135deg, oklch(0.75 0.15 262), oklch(0.82 0.1 280));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Hero: CTA primary button */
+.btn-gradient-primary {
+  background: linear-gradient(135deg, oklch(0.51 0.22 262), oklch(0.45 0.2 280));
+  color: oklch(0.985 0 0);
+}
+
+.btn-gradient-primary:hover {
+  background: linear-gradient(135deg, oklch(0.56 0.22 262), oklch(0.5 0.2 280));
+}
+
+.dark .btn-gradient-primary {
+  background: linear-gradient(135deg, oklch(0.58 0.2 262), oklch(0.52 0.18 280));
+  color: oklch(0.985 0 0);
+}
+
+.dark .btn-gradient-primary:hover {
+  background: linear-gradient(135deg, oklch(0.63 0.2 262), oklch(0.57 0.18 280));
 }
