@@ -48,26 +48,26 @@ const routes: RouteRecordRaw[] = [
   //     },
   //   ],
   // },
-  // {
-  //   path: "/signin",
-  //   name: "login",
-  //   component: () => import("@/pages/auth/LoginView.vue"),
-  //   meta: {
-  //     title: "Login",
-  //     guard: "guest",
-  //   },
-  // },
-  // // Registration
-  // {
-  //   path: "/signup",
-  //   name: "register",
-  //   component: () => import("@/pages/auth/RegisterView.vue"),
-  //   meta: {
-  //     title: "User Registration",
-  //     guard: "guest",
-  //   },
-  // },
-  // // Error Pages
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('@/pages/auth/Auth.vue'),
+    meta: {
+      title: 'Login',
+      guard: 'guest',
+    },
+  },
+  // Registration
+  {
+    path: '/signup',
+    name: 'register',
+    component: () => import('@/pages/auth/Auth.vue'),
+    meta: {
+      title: 'User Registration',
+      guard: 'guest',
+    },
+  },
+  // Error Pages
   // {
   //   path: "/access-denied",
   //   name: "access-denied",
