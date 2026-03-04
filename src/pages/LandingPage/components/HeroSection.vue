@@ -3,7 +3,7 @@ import { ArrowRight, CheckCircle2, Play, Star } from 'lucide-vue-next'
 import { RouterLink } from 'vue-router'
 import { useHeroSection } from '../composables/useHeroSection'
 
-const { stats, badges, dashboardStats, recentPermits } = useHeroSection()
+const { stats, dashboardStats, recentPermits } = useHeroSection()
 </script>
 
 <template>
@@ -90,18 +90,6 @@ const { stats, badges, dashboardStats, recentPermits } = useHeroSection()
             </span>
             Watch Demo
           </button>
-        </div>
-
-        <!-- Micro trust badges -->
-        <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mb-16">
-          <div
-            v-for="badge in badges"
-            :key="badge"
-            class="flex items-center gap-1.5 text-sm text-muted-foreground"
-          >
-            <CheckCircle2 class="w-4 h-4 text-primary/70" />
-            {{ badge }}
-          </div>
         </div>
       </div>
 
