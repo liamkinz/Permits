@@ -6,8 +6,6 @@ export function useHeroSection() {
     { value: '< 24h', label: 'Avg. Turnaround' },
   ]
 
-  const badges = ['No credit card required', 'Free 14-day trial', 'Cancel anytime']
-
   const dashboardStats = [
     { label: 'Active Permits', value: '24', color: 'text-blue-600 dark:text-blue-400' },
     { label: 'Pending Review', value: '7', color: 'text-amber-600 dark:text-amber-400' },
@@ -35,5 +33,5 @@ export function useHeroSection() {
     },
   ]
 
-  return { stats, badges, dashboardStats, recentPermits }
+  return { stats, dashboardStats, recentPermits }
 }

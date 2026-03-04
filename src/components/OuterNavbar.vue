@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
-import { RouterLink, useRoute, useRouter } from 'vue-router'
+import { RouterLink } from 'vue-router'
 import { FileText, Menu, X, ArrowRight } from 'lucide-vue-next'
 import ModeToggle from '@/components/ModeToggle.vue'
+import Auth from '@/pages/auth/Auth.vue'
 
-const router = useRouter()
-const route = useRoute()
-
+const authRef = ref<InstanceType<typeof Auth> | null>(null)
 const isMobileMenuOpen = ref(false)
 const scrolled = ref(false)
 
@@ -25,9 +24,9 @@ function closeMobileMenu() {
   isMobileMenuOpen.value = false
 }
 
-function navigateTo(path: string) {
-  router.push(path)
+function openAuth(view: 'login' | 'register') {
   closeMobileMenu()
+  authRef.value?.openDialog(view)
 }
 
 onMounted(() => window.addEventListener('scroll', handleScroll, { passive: true }))
@@ -74,13 +73,13 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
           <ModeToggle />
           <div class="w-px h-5 bg-border mx-1" aria-hidden="true" />
           <button
-            @click="navigateTo('/login')"
+            @click="openAuth('login')"
             class="px-3 py-1.5 text-sm font-medium text-muted-foreground hover:text-foreground rounded-lg hover:bg-accent transition-all duration-150"
           >
             Sign In
           </button>
           <button
-            @click="navigateTo('/signup')"
+            @click="openAuth('register')"
             class="inline-flex items-center gap-1.5 px-4 py-1.5 text-sm font-semibold text-primary-foreground bg-primary hover:bg-primary/90 rounded-lg shadow-sm hover:shadow-md hover:-translate-y-px transition-all duration-150"
           >
             Get Started
@@ -140,13 +139,13 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
         <!-- Divider + actions -->
         <div class="px-4 pt-3 pb-4 border-t border-border space-y-2 mt-1">
           <button
-            @click="navigateTo('/login')"
+            @click="openAuth('login')"
             class="w-full px-4 py-2.5 text-sm font-medium text-foreground rounded-lg border border-border hover:bg-accent transition-colors text-center"
           >
             Sign In
           </button>
           <button
-            @click="navigateTo('/signup')"
+            @click="openAuth('register')"
             class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold text-primary-foreground bg-primary hover:bg-primary/90 rounded-lg transition-colors"
           >
             Get Started
@@ -156,4 +155,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
       </div>
     </Transition>
   </header>
+
+  <!-- Auth dialog (mounted here, opened programmatically via openAuth()) -->
+  <Auth ref="authRef" />
 </template>
