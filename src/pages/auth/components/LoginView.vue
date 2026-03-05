@@ -172,7 +172,7 @@ function inputCls(field: keyof typeof form, extra = '') {
         @click="emit('switch-to-register')"
         class="text-primary hover:text-primary/80 hover:underline font-medium transition-colors"
       >
-        Sign up
+        Register
       </button>
     </p>
   </form>

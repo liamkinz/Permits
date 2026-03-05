@@ -53,7 +53,7 @@ defineExpose({ openDialog })
       <div class="h-1 w-full btn-gradient-primary" />
 
       <div class="p-6">
-        <DialogHeader class="sr-only">
+        <!-- <DialogHeader class="sr-only">
           <DialogTitle>
             {{ currentView === 'login' ? 'Sign In' : 'Create Account' }}
           </DialogTitle>
@@ -64,7 +64,7 @@ defineExpose({ openDialog })
                 : 'Create a new account to get started'
             }}
           </DialogDescription>
-        </DialogHeader>
+        </DialogHeader> -->
 
         <!-- Tab-style switcher -->
         <div class="flex rounded-lg bg-muted p-1 mb-6">
@@ -78,7 +78,7 @@ defineExpose({ openDialog })
                 : 'text-muted-foreground hover:text-foreground'
             "
           >
-            Sign In
+            Login
           </button>
           <button
             type="button"
@@ -90,7 +90,7 @@ defineExpose({ openDialog })
                 : 'text-muted-foreground hover:text-foreground'
             "
           >
-            Sign Up
+            Register
           </button>
         </div>
 
