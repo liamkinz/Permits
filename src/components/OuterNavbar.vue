@@ -10,7 +10,7 @@ const isMobileMenuOpen = ref(false)
 const scrolled = ref(false)
 
 const navLinks = [
-  { label: 'Features', href: '#features' },
+  { label: 'Home', href: '/' },
   { label: 'How It Works', href: '#how-it-works' },
   { label: 'Pricing', href: '#pricing' },
   { label: 'Contact', href: '#contact' },

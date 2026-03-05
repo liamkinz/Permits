@@ -68,14 +68,22 @@ const routes: RouteRecordRaw[] = [
     },
   },
   // Error Pages
-  // {
-  //   path: "/access-denied",
-  //   name: "access-denied",
-  //   component: () => import("@/pages/errors/AccessDenied.vue"),
-  //   meta: {
-  //     title: "Access Denied",
-  //   },
-  // },
+  {
+    path: '/access-denied',
+    name: 'access-denied',
+    component: () => import('@/pages/errors/AccessDenied.vue'),
+    meta: {
+      title: 'Access Denied',
+    },
+  },
+  {
+    path: '/page-not-found',
+    name: 'page-not-found',
+    component: () => import('@/pages/errors/404.vue'),
+    meta: {
+      title: 'Page Not Found',
+    },
+  },
   // {
   //   path: "/business-owner",
   //   name: "business-owner",
@@ -95,10 +103,10 @@ const routes: RouteRecordRaw[] = [
   //     /*   guard: 'auth' */
   //   },
   // },
-  // {
-  //   path: "/:pathMatch(.*)*",
-  //   redirect: "/page-not-found",
-  // },
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: '/page-not-found',
+  },
 ]
 
 const router = createRouter({

@@ -244,7 +244,7 @@ function inputCls(field: keyof typeof form, extra = '') {
         @click="emit('switch-to-login')"
         class="text-primary hover:text-primary/80 hover:underline font-medium transition-colors"
       >
-        Sign in
+        Login
       </button>
     </p>
   </form>
