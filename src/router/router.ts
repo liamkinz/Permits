@@ -16,26 +16,27 @@ const routes: RouteRecordRaw[] = [
   //     guard: "auth",
   //   },
   // },
-  // {
-  //   path: "/admin",
-  //   name: "admin",
-  //   component: () => import("@/pages/AdminPage/AdminView.vue"),
-  //   meta: {
-  //     title: "Admin Dashboard",
-  //     /*  guard: 'auth' */
-  //   },
-  //   redirect: "/admin/dashboard",
-  //   children: [
-  //     {
-  //       path: "dashboard",
-  //       name: "admin-dashboard",
-  //       component: () =>
-  //         import("@/pages/AdminPage/components/AdminDashboard.vue"),
-  //       meta: {
-  //         title: "Admin Dashboard",
-  //         /*  guard: 'auth' */
-  //       },
-  //     },
+  {
+    path: '/admin',
+    name: 'admin',
+    component: () => import('@/pages/AdminPage/AdminView.vue'),
+    meta: {
+      title: 'Admin Dashboard',
+      /*  guard: 'auth' */
+    },
+    redirect: '/admin/dashboard',
+    children: [
+      {
+        path: 'dashboard',
+        name: 'admin-dashboard',
+        component: () => import('@/pages/AdminPage/components/AdminDashboard.vue'),
+        meta: {
+          title: 'Admin Dashboard',
+          /*  guard: 'auth' */
+        },
+      },
+    ],
+  },
   //     {
   //       path: "billing",
   //       name: "admin-billing",
