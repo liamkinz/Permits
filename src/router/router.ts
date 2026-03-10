@@ -7,15 +7,14 @@ const routes: RouteRecordRaw[] = [
     name: 'Landing',
     component: () => import('@/pages/LandingPage/LandingView.vue'),
   },
-  // {
-  //   path: "/home",
-  //   name: "home",
-  //   component: () => import("@/pages/HomePage/HomeView.vue"),
-  //   meta: {
-  //     title: "Home",
-  //     guard: "auth",
-  //   },
-  // },
+  {
+    path: '/home',
+    name: 'home',
+    component: () => import('@/pages/HomePage/HomePage.vue'),
+    meta: {
+      title: 'Home',
+    },
+  },
   {
     path: '/admin',
     name: 'admin',
