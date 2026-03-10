@@ -7,35 +7,35 @@ const routes: RouteRecordRaw[] = [
     name: 'Landing',
     component: () => import('@/pages/LandingPage/LandingView.vue'),
   },
-  // {
-  //   path: "/home",
-  //   name: "home",
-  //   component: () => import("@/pages/HomePage/HomeView.vue"),
-  //   meta: {
-  //     title: "Home",
-  //     guard: "auth",
-  //   },
-  // },
-  // {
-  //   path: "/admin",
-  //   name: "admin",
-  //   component: () => import("@/pages/AdminPage/AdminView.vue"),
-  //   meta: {
-  //     title: "Admin Dashboard",
-  //     /*  guard: 'auth' */
-  //   },
-  //   redirect: "/admin/dashboard",
-  //   children: [
-  //     {
-  //       path: "dashboard",
-  //       name: "admin-dashboard",
-  //       component: () =>
-  //         import("@/pages/AdminPage/components/AdminDashboard.vue"),
-  //       meta: {
-  //         title: "Admin Dashboard",
-  //         /*  guard: 'auth' */
-  //       },
-  //     },
+  {
+    path: '/home',
+    name: 'home',
+    component: () => import('@/pages/HomePage/HomePage.vue'),
+    meta: {
+      title: 'Home',
+    },
+  },
+  {
+    path: '/admin',
+    name: 'admin',
+    component: () => import('@/pages/AdminPage/AdminView.vue'),
+    meta: {
+      title: 'Admin Dashboard',
+      /*  guard: 'auth' */
+    },
+    redirect: '/admin/dashboard',
+    children: [
+      {
+        path: 'dashboard',
+        name: 'admin-dashboard',
+        component: () => import('@/pages/AdminPage/components/AdminDashboard.vue'),
+        meta: {
+          title: 'Admin Dashboard',
+          /*  guard: 'auth' */
+        },
+      },
+    ],
+  },
   //     {
   //       path: "billing",
   //       name: "admin-billing",
