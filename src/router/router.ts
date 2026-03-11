@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
-// import { useAuthStore } from "@/stores/authStore";
+import { useAuthStore } from '@/stores/authStore'
 
 const routes: RouteRecordRaw[] = [
   {
@@ -13,6 +13,8 @@ const routes: RouteRecordRaw[] = [
     component: () => import('@/pages/HomePage/HomePage.vue'),
     meta: {
       title: 'Home',
+      guard: 'auth',
+      role: 'user',
     },
   },
   {
@@ -21,7 +23,8 @@ const routes: RouteRecordRaw[] = [
     component: () => import('@/pages/AdminPage/AdminView.vue'),
     meta: {
       title: 'Admin Dashboard',
-      /*  guard: 'auth' */
+      guard: 'auth',
+      role: 'admin',
     },
     redirect: '/admin/dashboard',
     children: [
@@ -31,7 +34,8 @@ const routes: RouteRecordRaw[] = [
         component: () => import('@/pages/AdminPage/components/AdminDashboard.vue'),
         meta: {
           title: 'Admin Dashboard',
-          /*  guard: 'auth' */
+          guard: 'auth',
+          role: 'admin',
         },
       },
     ],
@@ -114,23 +118,26 @@ const router = createRouter({
   routes,
 })
 
-// // Navigation guards
-// router.beforeEach((to, _from, next) => {
-//   const authStore = useAuthStore();
-//   const isAuthenticated = authStore.isAuthenticated;
+// Navigation guards
+router.beforeEach((to, _from, next) => {
+  const authStore = useAuthStore()
+  const isAuthenticated = authStore.isAuthenticated
+  const userRole = authStore.user?.role
 
-//   // Check if the route requires authentication
-//   if (to.meta.guard === "auth" && !isAuthenticated) {
-//     // Redirect to login if not authenticated
-//     next({ name: "login" });
-//   }
-//   // Check if the route is for guests only (like login/register)
-//   else if (to.meta.guard === "guest" && isAuthenticated) {
-//     // Redirect to home if already authenticated
-//     next({ name: "home" });
-//   } else {
-//     next();
-//   }
-// });
+  // Route requires authentication
+  if (to.meta.guard === 'auth' && !isAuthenticated) {
+    next({ name: 'login' })
+  }
+  // Route requires specific role
+  else if (to.meta.guard === 'auth' && to.meta.role && to.meta.role !== userRole) {
+    next({ name: 'access-denied' })
+  }
+  // Guest-only routes (login/register) — redirect authenticated users by role
+  else if (to.meta.guard === 'guest' && isAuthenticated) {
+    next(userRole === 'admin' ? '/admin/dashboard' : '/')
+  } else {
+    next()
+  }
+})
 
 export default router
