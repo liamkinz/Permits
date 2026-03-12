@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import OuterLayout from '@/layout/OuterLayout.vue'
+import InnerUserLayout from '@/layout/InnerUserLayout.vue'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import {
@@ -14,7 +14,9 @@ import {
   TrendingUp,
   AlertCircle,
 } from 'lucide-vue-next'
+import { useAuthStore } from '@/stores/authStore'
 
+const authStore = useAuthStore()
 const stats = [
   {
     label: 'Total Permits',
@@ -93,7 +95,7 @@ const quickActions = [
 </script>
 
 <template>
-  <OuterLayout>
+  <InnerUserLayout>
     <template #content>
       <!-- Hero Section -->
       <section
@@ -106,7 +108,9 @@ const quickActions = [
           <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div>
               <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
-                Welcome back! 👋
+                Welcome back,
+                <span class="text-purple-500">{{ authStore.user?.name ?? 'User' }}</span
+                >! 👋
               </h1>
               <p class="mt-2 text-lg text-muted-foreground max-w-2xl">
                 Manage your permits, track applications, and stay on top of deadlines — all in one
@@ -271,5 +275,5 @@ const quickActions = [
         </Card>
       </section>
     </template>
-  </OuterLayout>
+  </InnerUserLayout>
 </template>
