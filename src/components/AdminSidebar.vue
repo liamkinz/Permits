@@ -135,7 +135,7 @@ const menuItems = [
         <div
           class="w-10 h-10 rounded-full btn-gradient-primary flex items-center justify-center text-primary-foreground font-semibold text-sm flex-shrink-0"
         >
-          {{ authStore.user?.name?.slice(0, 2).toUpperCase() ?? 'AD' }}
+          {{ authStore.adminInitials }}
         </div>
         <div class="min-w-0 flex-1">
           <p class="text-sm font-semibold text-sidebar-foreground truncate">

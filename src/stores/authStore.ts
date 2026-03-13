@@ -32,6 +32,15 @@ export const useAuthStore = defineStore('auth', () => {
   const isAuthenticated = computed(() => !!token.value)
   const isAdmin = computed(() => user.value?.role === 'admin')
   const isUser = computed(() => user.value?.role === 'user')
+  const adminInitials = computed(() => {
+    if (!user.value?.name) return 'AD'
+    return user.value.name
+      .split(' ')
+      .map((n) => n[0])
+      .join('')
+      .toUpperCase()
+      .slice(0, 2)
+  })
 
   function persistSession() {
     localStorage.setItem('auth', JSON.stringify({ user: user.value, token: token.value }))
@@ -96,5 +105,6 @@ export const useAuthStore = defineStore('auth', () => {
     isUser,
     login,
     logout,
+    adminInitials,
   }
 })

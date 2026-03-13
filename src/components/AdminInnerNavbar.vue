@@ -12,7 +12,9 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { useAdminSidebar } from '@/lib/useAdminSidebar'
+import { useAuthStore } from '@/stores/authStore'
 
+const authStore = useAuthStore()
 const { toggleMobileSidebar } = useAdminSidebar()
 
 const notificationCount = ref(3)
@@ -26,7 +28,7 @@ const notifications = [
 </script>
 
 <template>
-  <header class="sticky top-0 z-30 w-full border-b border-border bg-background">
+  <header class="sticky top-0 z-30 w-full border-b border-border bg-background/60 backdrop-blur-sm">
     <div class="flex items-center justify-between h-14 px-4 md:justify-end md:px-6">
       <!-- Mobile Menu Button -->
       <Button
@@ -127,20 +129,24 @@ const notifications = [
           <DropdownMenuTrigger as-child>
             <Button variant="ghost" size="sm" class="pl-2 pr-1 gap-2 hover:bg-accent">
               <div
-                class="w-8 h-8 rounded-full btn-gradient-primary flex items-center justify-center text-primary-foreground font-semibold text-sm"
+                class="w-8 h-8 rounded-full btn-gradient-primary flex items-center justify-center text-primary-foreground font-semibold text-xs"
               >
-                AD
+                {{ authStore.adminInitials }}
               </div>
-              <span class="hidden sm:inline text-sm font-medium text-foreground"> Admin </span>
+              <span class="hidden sm:inline text-sm font-medium text-foreground">
+                {{ authStore.user?.name || 'Admin' }}
+              </span>
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" class="w-56 bg-popover">
             <DropdownMenuLabel class="flex flex-col gap-1">
               <div class="flex items-center gap-2">
                 <Crown class="h-4 w-4 text-chart-4" />
-                <span>Admin User</span>
+                <span>{{ authStore.user?.name || 'Admin User' }}</span>
               </div>
-              <span class="text-xs font-normal text-muted-foreground">admin@permits.com</span>
+              <span class="text-xs font-normal text-muted-foreground">{{
+                authStore.user?.email || 'admin@permits.com'
+              }}</span>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem class="cursor-pointer gap-2">
@@ -154,8 +160,8 @@ const notifications = [
             <DropdownMenuSeparator />
             <DropdownMenuItem
               class="cursor-pointer gap-2 text-destructive focus:text-destructive focus:bg-destructive/10"
-            >
-              <LogOut class="h-4 w-4" />
+              @click="authStore.logout()"
+              ><LogOut class="h-4 w-4" />
               <span>Logout</span>
             </DropdownMenuItem>
           </DropdownMenuContent>
