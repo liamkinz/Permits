@@ -15,7 +15,9 @@ import {
 } from 'lucide-vue-next'
 import { Button } from '@/components/ui/button'
 import { useAdminSidebar } from '@/lib/useAdminSidebar'
+import { useAuthStore } from '@/stores/authStore'
 
+const authStore = useAuthStore()
 const { isOpen, isMobileOpen, toggleSidebar, closeMobileSidebar } = useAdminSidebar()
 
 const navigationItems = [
@@ -133,11 +135,13 @@ const menuItems = [
         <div
           class="w-10 h-10 rounded-full btn-gradient-primary flex items-center justify-center text-primary-foreground font-semibold text-sm flex-shrink-0"
         >
-          AD
+          {{ authStore.adminInitials }}
         </div>
         <div class="min-w-0 flex-1">
-          <p class="text-sm font-semibold text-sidebar-foreground truncate">Admin User</p>
-          <p class="text-xs text-sidebar-foreground/50 truncate">admin@permits.com</p>
+          <p class="text-sm font-semibold text-sidebar-foreground truncate">
+            {{ authStore.user?.name }}
+          </p>
+          <p class="text-xs text-sidebar-foreground/50 truncate">{{ authStore.user?.email }}</p>
         </div>
       </div>
 
@@ -145,6 +149,7 @@ const menuItems = [
       <Button
         variant="outline"
         class="w-full bg-sidebar-accent hover:bg-sidebar-accent/80 border-sidebar-border text-sidebar-foreground/70 hover:text-sidebar-foreground"
+        @click="authStore.logout()"
       >
         <LogOut class="h-4 w-4 mr-2" />
         <span v-if="isOpen || isMobileOpen">Logout</span>

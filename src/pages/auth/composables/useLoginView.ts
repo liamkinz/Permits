@@ -1,7 +1,10 @@
 import { reactive, ref } from 'vue'
 import { emailValidator, requiredValidator } from '@/lib/validator'
+import { useAuthStore } from '@/stores/authStore'
 
 export function useLoginView() {
+  const authStore = useAuthStore()
+
   const form = reactive({
     email: '',
     password: '',
@@ -53,13 +56,16 @@ export function useLoginView() {
     return !errors.email && !errors.password
   }
 
-  function handleSubmit() {
+  async function handleSubmit() {
     if (!validateAll()) return
     isLoading.value = true
-    // TODO: implement login logic
-    setTimeout(() => {
-      isLoading.value = false
-    }, 1500)
+    errors.email = ''
+    errors.password = ''
+    const success = await authStore.login(form.email, form.password)
+    if (!success) {
+      errors.email = authStore.loginError
+    }
+    isLoading.value = false
   }
 
   return {

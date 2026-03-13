@@ -1,0 +1,36 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Admin User",
+      "email": "admin@example.com",
+      "password": "Admin@123",
+      "role": "admin",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIn0.admin-sample-token"
+    },
+    {
+      "id": 2,
+      "name": "Liam Kinazo",
+      "email": "liam@example.com",
+      "password": "Admin123",
+      "role": "admin",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIn0.admin2-sample-token"
+    },
+    {
+      "id": 3,
+      "name": "John Doe",
+      "email": "john@example.com",
+      "password": "User@123",
+      "role": "user",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6InVzZXIifQ.user1-sample-token"
+    },
+    {
+      "id": 4,
+      "name": "Jane Smith",
+      "email": "jane@example.com",
+      "password": "User@123",
+      "role": "user",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZSI6InVzZXIifQ.user2-sample-token"
+    }
+  ]
+}
