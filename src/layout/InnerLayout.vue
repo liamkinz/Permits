@@ -16,7 +16,7 @@ const { isOpen } = useAdminSidebar()
     >
       <AdminInnerNavbar />
       <main class="flex-1 overflow-auto bg-muted">
-        <slot name="content"></slot>
+        <RouterView />
       </main>
     </div>
   </div>
