@@ -1,141 +1,117 @@
-import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import { useAuthStore } from '@/stores/authStore'
+import OuterLayout from '@/layout/OuterLayout.vue'
+import InnerLayout from '@/layout/InnerLayout.vue'
 
-const routes: RouteRecordRaw[] = [
-  {
-    path: '/',
-    name: 'Landing',
-    component: () => import('@/pages/LandingPage/LandingView.vue'),
-  },
-  {
-    path: '/home',
-    name: 'home',
-    component: () => import('@/pages/HomePage/HomePage.vue'),
-    meta: {
-      title: 'Home',
-      guard: 'auth',
-      role: 'user',
-    },
-  },
-  {
-    path: '/admin',
-    name: 'admin',
-    component: () => import('@/pages/AdminPage/AdminView.vue'),
-    meta: {
-      title: 'Admin Dashboard',
-      guard: 'auth',
-      role: 'admin',
-    },
-    redirect: '/admin/dashboard',
-    children: [
-      {
-        path: 'dashboard',
-        name: 'admin-dashboard',
-        component: () => import('@/pages/AdminPage/components/AdminDashboard.vue'),
-        meta: {
-          title: 'Admin Dashboard',
-          guard: 'auth',
-          role: 'admin',
-        },
-      },
-    ],
-  },
-  //     {
-  //       path: "billing",
-  //       name: "admin-billing",
-  //       component: () =>
-  //         import("@/pages/AdminPage/components/AdminBilling.vue"),
-  //       meta: {
-  //         title: "Admin Billing",
-  //         /*  guard: 'auth' */
-  //       },
-  //     },
-  //   ],
-  // },
-  {
-    path: '/login',
-    name: 'login',
-    component: () => import('@/pages/auth/Auth.vue'),
-    meta: {
-      title: 'Login',
-      guard: 'guest',
-    },
-  },
-  // Registration
-  {
-    path: '/signup',
-    name: 'register',
-    component: () => import('@/pages/auth/Auth.vue'),
-    meta: {
-      title: 'User Registration',
-      guard: 'guest',
-    },
-  },
-  // Error Pages
-  {
-    path: '/access-denied',
-    name: 'access-denied',
-    component: () => import('@/pages/errors/AccessDenied.vue'),
-    meta: {
-      title: 'Access Denied',
-    },
-  },
-  {
-    path: '/page-not-found',
-    name: 'page-not-found',
-    component: () => import('@/pages/errors/404.vue'),
-    meta: {
-      title: 'Page Not Found',
-    },
-  },
-  // {
-  //   path: "/business-owner",
-  //   name: "business-owner",
-  //   component: () => import("@/pages/BusinessOwnerPage/BusinessOwnerView.vue"),
-  //   meta: {
-  //     title: "Business Owner Dashboard",
-  //     /*  guard: 'auth' */
-  //   },
-  // },
-  // {
-  //   path: "/business-owner/pick-location",
-  //   name: "gmap-location-picker",
-  //   component: () =>
-  //     import("@/pages/BusinessOwnerPage/GmapPickLocationView.vue"),
-  //   meta: {
-  //     title: "Pick Your Location",
-  //     /*   guard: 'auth' */
-  //   },
-  // },
-  {
-    path: '/:pathMatch(.*)*',
-    redirect: '/page-not-found',
-  },
-]
+// Landing Routes
+import LandingView from '@/pages/LandingPage/LandingView.vue'
+
+// Auth Routes
+import AuthPage from '@/pages/auth/Auth.vue'
+
+// Admin Routes
+// import AdminView from '@/pages/AdminPage/AdminView.vue'
+import DashboardView from '@/pages/AdminPage/dashboard/DashboardView.vue'
+import AdminPermits from '@/pages/AdminPage/permits/components/AdminPermits.vue'
+
+// Error Routes
+import AccessDenied from '@/pages/errors/AccessDenied.vue'
+import NotFound from '@/pages/errors/404.vue'
+import HomePage from '@/pages/HomePage/HomePage.vue'
 
 const router = createRouter({
-  history: createWebHistory(),
-  routes,
+  history: createWebHistory(import.meta.env.BASE_URL),
+  routes: [
+    {
+      path: '/',
+      component: OuterLayout,
+      children: [
+        {
+          path: '',
+          name: 'landing',
+          component: LandingView,
+          meta: { requiresGuest: true },
+        },
+      ],
+    },
+    {
+      path: '/home',
+      component: InnerLayout,
+      children: [
+        {
+          path: '',
+          name: 'home',
+          component: HomePage,
+          meta: { title: 'Home', requiresAuth: true },
+        },
+      ],
+    },
+    {
+      path: '/auth',
+      component: OuterLayout,
+      children: [
+        {
+          path: '',
+          name: 'login',
+          component: AuthPage,
+          meta: { title: 'Login', requiresGuest: true },
+        },
+        {
+          path: 'register',
+          name: 'register',
+          component: AuthPage,
+          meta: { title: 'User Registration', requiresGuest: true },
+        },
+      ],
+    },
+    {
+      path: '/admin',
+      component: InnerLayout,
+      children: [
+        {
+          path: 'dashboard',
+          name: 'admin-dashboard',
+          component: DashboardView,
+          meta: { requiresAuth: true },
+        },
+        {
+          path: 'permits',
+          name: 'admin-permits',
+          component: AdminPermits,
+          meta: { title: 'Admin Permits', requiresAuth: true },
+        },
+      ],
+    },
+    {
+      path: '/access-denied',
+      name: 'access-denied',
+      component: AccessDenied,
+      meta: { title: 'Access Denied' },
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'page-not-found',
+      component: NotFound,
+      meta: { title: 'Page Not Found' },
+    },
+  ],
 })
 
-// Navigation guards
+// Navigation Guard
 router.beforeEach((to, _from, next) => {
   const authStore = useAuthStore()
   const isAuthenticated = authStore.isAuthenticated
-  const userRole = authStore.user?.role
 
-  // Route requires authentication
-  if (to.meta.guard === 'auth' && !isAuthenticated) {
+  // If route requires auth and user is NOT logged in -> redirect to login
+  if (to.meta.requiresAuth && !isAuthenticated) {
     next({ name: 'login' })
   }
-  // Route requires specific role
-  else if (to.meta.guard === 'auth' && to.meta.role && to.meta.role !== userRole) {
-    next({ name: 'access-denied' })
+  // If route requires guest (login/register) and user IS logged in -> redirect to home
+  else if (to.meta.requiresGuest && isAuthenticated) {
+    next({ name: 'home' })
   }
-  // Guest-only routes (login/register) — redirect authenticated users by role
-  else if (to.meta.guard === 'guest' && isAuthenticated) {
-    next(userRole === 'admin' ? '/admin/dashboard' : '/')
-  } else {
+  // Otherwise, allow navigation
+  else {
     next()
   }
 })

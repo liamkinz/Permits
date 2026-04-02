@@ -22,7 +22,7 @@ const { isOpen, isMobileOpen, toggleSidebar, closeMobileSidebar } = useAdminSide
 
 const navigationItems = [
   { label: 'Dashboard', icon: Home, href: '/admin/dashboard' },
-  { label: 'Permits', icon: FileText, href: '#' },
+  { label: 'Permits', icon: FileText, href: '/admin/permits' },
   { label: 'Users', icon: Users, href: '#' },
   { label: 'Applications', icon: BarChart3, href: '#' },
   { label: 'In Progress', icon: Clock, href: '#' },
