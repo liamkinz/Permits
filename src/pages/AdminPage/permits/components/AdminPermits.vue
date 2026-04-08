@@ -24,7 +24,7 @@ import {
   statusCardIcons,
   getDaysAgo,
 } from '../composables/useAdminPermits'
-import type { PermitStatus, PermitType } from '../composables/useAdminPermits'
+import StatusOverview from './StatusOverview.vue'
 
 const {
   filteredPermits,
@@ -124,7 +124,7 @@ const {
     <!-- Main Content -->
     <div class="px-4 sm:px-6 lg:px-8 py-8 space-y-6">
       <!-- Status Overview Cards -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+      <!-- <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
         <Card
           v-for="status in statusOptions"
           :key="status"
@@ -155,7 +155,8 @@ const {
             </div>
           </CardContent>
         </Card>
-      </div>
+      </div> -->
+      <StatusOverview />
 
       <!-- Permits List Section -->
       <Card class="border border-border/50">
