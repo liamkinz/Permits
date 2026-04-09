@@ -12,7 +12,8 @@ import AuthPage from '@/pages/auth/Auth.vue'
 // Admin Routes
 // import AdminView from '@/pages/AdminPage/AdminView.vue'
 import DashboardView from '@/pages/AdminPage/dashboard/DashboardView.vue'
-import AdminPermits from '@/pages/AdminPage/permits/components/AdminPermits.vue'
+import AdminPermits from '@/pages/AdminPage/permits/PermitsView.vue'
+import AdminApplications from '@/pages/AdminPage/apllications/ApplicationView.vue'
 
 // Error Routes
 import AccessDenied from '@/pages/errors/AccessDenied.vue'
@@ -72,6 +73,12 @@ const router = createRouter({
           path: 'dashboard',
           name: 'admin-dashboard',
           component: DashboardView,
+          meta: { requiresAuth: true },
+        },
+        {
+          path: 'applications',
+          name: 'admin-applications',
+          component: AdminApplications,
           meta: { requiresAuth: true },
         },
         {
