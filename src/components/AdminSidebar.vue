@@ -25,9 +25,9 @@ const navigationItems = [
   { label: 'Applications', icon: BarChart3, href: '/admin/applications' },
   { label: 'Permits', icon: FileText, href: '/admin/permits' },
   { label: 'Users', icon: Users, href: '#' },
-  { label: 'In Progress', icon: Clock, href: '#' },
-  { label: 'Approved', icon: CheckCircle, href: '#' },
+  { label: 'In Progress', icon: Clock, href: '/admin/inprogress' },
   { label: 'Denied', icon: AlertCircle, href: '#' },
+  { label: 'Approved', icon: CheckCircle, href: '/admin/approved' },
 ]
 
 const menuItems = [

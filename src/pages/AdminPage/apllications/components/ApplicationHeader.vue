@@ -30,7 +30,7 @@ const {
         </div>
 
         <!-- Search and Quick Filter -->
-        <div class="flex flex-col gap-3">
+        <div class="flex flex-col gap-3 my-5">
           <!-- Search Bar -->
           <div class="flex gap-2">
             <input
