@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { TypographyH1 } from '@/components/ui/typography'
 import { useAuthStore } from '@/stores/authStore'
 import InProgressHeader from './components/InProgressHeader.vue'
 import ProgressStatsGrid from './components/ProgressStatsGrid.vue'
