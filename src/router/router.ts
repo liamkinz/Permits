@@ -3,6 +3,9 @@ import { useAuthStore } from '@/stores/authStore'
 import OuterLayout from '@/layout/OuterLayout.vue'
 import InnerLayout from '@/layout/InnerLayout.vue'
 
+//Layout For Users
+import InnerUserLayout from '@/layout/InnerUserLayout.vue'
+
 // Landing Routes
 import LandingView from '@/pages/LandingPage/LandingView.vue'
 
@@ -20,7 +23,7 @@ import AdminApproved from '@/pages/AdminPage/approved/ApprovedView.vue'
 // Error Routes
 import AccessDenied from '@/pages/errors/AccessDenied.vue'
 import NotFound from '@/pages/errors/404.vue'
-import HomePage from '@/pages/HomePage/HomePage.vue'
+import HomeView from '@/pages/HomePage/HomeView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -39,12 +42,12 @@ const router = createRouter({
     },
     {
       path: '/home',
-      component: InnerLayout,
+      component: InnerUserLayout,
       children: [
         {
           path: '',
           name: 'home',
-          component: HomePage,
+          component: HomeView,
           meta: { requiresAuth: true },
         },
       ],

@@ -6,8 +6,9 @@ import FooterSection from '@/components/FooterSection.vue'
 <template>
   <div class="flex flex-col min-h-screen bg-background">
     <UserInnerNavbar />
+    <!-- <main class="flex-1"> -->
     <main class="flex-1">
-      <slot name="content"></slot>
+      <RouterView />
     </main>
     <FooterSection />
   </div>
