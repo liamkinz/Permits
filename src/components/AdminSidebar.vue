@@ -26,7 +26,7 @@ const navigationItems = [
   { label: 'Permits', icon: FileText, href: '/admin/permits' },
   { label: 'Users', icon: Users, href: '#' },
   { label: 'In Progress', icon: Clock, href: '/admin/inprogress' },
-  { label: 'Denied', icon: AlertCircle, href: '#' },
+  { label: 'Denied', icon: AlertCircle, href: '/admin/denied' },
   { label: 'Approved', icon: CheckCircle, href: '/admin/approved' },
 ]
 

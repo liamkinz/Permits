@@ -18,6 +18,7 @@ import DashboardView from '@/pages/AdminPage/dashboard/DashboardView.vue'
 import AdminPermits from '@/pages/AdminPage/permits/PermitsView.vue'
 import AdminApplications from '@/pages/AdminPage/apllications/ApplicationView.vue'
 import AdminInProgess from '@/pages/AdminPage/inprogress/InProgressView.vue'
+import AdminDenied from '@/pages/AdminPage/denied/DeniedView.vue'
 import AdminApproved from '@/pages/AdminPage/approved/ApprovedView.vue'
 
 // Error Routes
@@ -96,6 +97,12 @@ const router = createRouter({
           path: 'inprogress',
           name: 'admin-inprogress',
           component: AdminInProgess,
+          meta: { requiresAuth: true },
+        },
+        {
+          path: 'denied',
+          name: 'admin-denied',
+          component: AdminDenied,
           meta: { requiresAuth: true },
         },
         {
