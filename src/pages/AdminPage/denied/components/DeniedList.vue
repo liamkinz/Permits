@@ -9,7 +9,6 @@ import {
   ChevronLeft,
   ChevronRight,
   AlertCircle,
-  FileText,
   Eye,
 } from 'lucide-vue-next'
 import { useDeniedApplications, getDaysAgo } from '../composables/useDeniedApplications'
@@ -22,7 +21,6 @@ const {
   sortField,
   sortOrder,
   getRejectionReasonColor,
-  formatSubmissionClass,
   formatRejectionReason,
   toggleSortOrder,
   goToPage,

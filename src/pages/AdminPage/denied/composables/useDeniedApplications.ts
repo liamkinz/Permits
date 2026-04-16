@@ -1,17 +1,7 @@
 import { computed, ref, reactive } from 'vue'
 
 // Sample data structure for denied applications
-interface DeniedApplication {
-  id: string
-  projectDescription: string
-  applicantName: string
-  location: string
-  deniedDate: string
-  submittedDate: string
-  rejectionReason: 'incomplete' | 'noncompliance' | 'zoning' | 'other'
-  rejectionDetails: string
-  submitType: 'new' | 'renewal' | 'modification'
-}
+import type { DeniedApplication } from '../types/admin-denied.types'
 
 // Sample denied applications data
 const sampleDeniedApplications: DeniedApplication[] = [
