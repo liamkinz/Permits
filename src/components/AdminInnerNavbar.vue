@@ -11,7 +11,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import { useAdminSidebar } from '@/lib/useAdminSidebar'
+import { useAdminSidebar } from '@/types/admin-sidebar.types'
 import { useAuthStore } from '@/stores/authStore'
 
 const authStore = useAuthStore()
