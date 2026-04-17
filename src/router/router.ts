@@ -115,15 +115,27 @@ const router = createRouter({
     },
     {
       path: '/access-denied',
-      name: 'access-denied',
-      component: AccessDenied,
-      meta: { title: 'Access Denied' },
+      component: OuterLayout,
+      children: [
+        {
+          path: '',
+          name: 'access-denied',
+          component: AccessDenied,
+          meta: { title: 'Access Denied' },
+        },
+      ],
     },
     {
       path: '/:pathMatch(.*)*',
-      name: 'page-not-found',
-      component: NotFound,
-      meta: { title: 'Page Not Found' },
+      component: OuterLayout,
+      children: [
+        {
+          path: '',
+          name: 'page-not-found',
+          component: NotFound,
+          meta: { title: 'Page Not Found' },
+        },
+      ],
     },
   ],
 })

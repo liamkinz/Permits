@@ -39,7 +39,7 @@ const { steps } = useHowItWorksSection()
           >
             <!-- Step number badge -->
             <div
-              class="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center shadow-sm z-20"
+              class="absolute -top-2 -left-2 w-6 h-6 rounded-full bg-sky-700 text-white border border-background dark:border-sky-700 text-xs font-bold flex items-center justify-center shadow-sm z-20"
             >
               {{ index + 1 }}
             </div>
@@ -47,7 +47,7 @@ const { steps } = useHowItWorksSection()
             <!-- Icon circle -->
             <div
               :class="[
-                'w-16 h-16 rounded-2xl border-2 flex items-center justify-center mb-5 transition-all duration-200 group-hover:scale-110 group-hover:shadow-md',
+                'w-16 h-16 rounded-2xl border-2 flex items-center justify-center mb-5 transition-all duration-200 group-hover:scale-110 group-hover:shadow-md dark:shadow-md',
                 step.accent,
               ]"
             >

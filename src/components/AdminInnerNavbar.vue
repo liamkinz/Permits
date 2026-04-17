@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import { Bell, MessageSquare, User, LogOut, Settings, Crown, Menu } from 'lucide-vue-next'
 import { Button } from '@/components/ui/button'
-import ModeToggle from './ModeToggle.vue'
+import ModeToggle from './ui/ModeToggle.vue'
 import {
   DropdownMenu,
   DropdownMenuContent,
