@@ -256,7 +256,7 @@ function getExpiryLabel(status: string) {
 
               <!-- Action -->
               <td class="px-4 py-3 text-center">
-                <Button size="sm" variant="ghost" class="h-8 px-2 gap-1">
+                <Button size="sm" class="h-8 px-2 gap-1">
                   <Download class="w-3.5 h-3.5" />
                   <span class="hidden sm:inline">Download</span>
                 </Button>

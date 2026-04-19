@@ -39,3 +39,11 @@ export interface StatusDistribution {
   count: number
   color: string
 }
+export interface Application {
+  id: string
+  applicantName: string
+  permitType: string
+  submittedDate: string
+  dueDate: string
+  daysRemaining: number
+}

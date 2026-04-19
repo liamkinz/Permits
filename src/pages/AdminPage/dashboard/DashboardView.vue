@@ -5,6 +5,7 @@ import StatsGrid from './components/StatsGrid.vue'
 import MetricsAndCharts from './components/MetricsAndCharts.vue'
 import QuickAction from './components/QuickAction.vue'
 import RecentApplication from './components/RecentApplication.vue'
+import OngoingEvaluations from './components/OngoingEvaluations.vue'
 
 const authStore = useAuthStore()
 </script>
@@ -40,6 +41,9 @@ const authStore = useAuthStore()
 
       <!-- Metrics and Charts Component -->
       <MetricsAndCharts />
+
+      <!-- Ongoing Evaluations Component -->
+      <OngoingEvaluations />
 
       <!-- Quick Actions -->
       <QuickAction />

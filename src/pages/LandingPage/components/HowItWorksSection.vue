@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useHowItWorksSection } from '../composables/useHowItWorksSection'
+import { Badge } from '@/components/ui/badge'
 
 const { steps } = useHowItWorksSection()
 </script>
@@ -10,7 +11,7 @@ const { steps } = useHowItWorksSection()
       <!-- Section header -->
       <div class="max-w-2xl mx-auto text-center mb-16">
         <div
-          class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/8 border border-primary/20 text-primary text-xs font-semibold uppercase tracking-wider mb-4"
+          class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/8 border border-primary/20 text-primary text-s font-semibold uppercase tracking-wider mb-4"
         >
           How It Works
         </div>
@@ -38,11 +39,12 @@ const { steps } = useHowItWorksSection()
             class="relative flex flex-col items-center text-center group z-10"
           >
             <!-- Step number badge -->
-            <div
-              class="absolute -top-2 -left-2 w-6 h-6 rounded-full bg-sky-700 text-white border border-background dark:border-sky-700 text-xs font-bold flex items-center justify-center shadow-sm z-20"
+            <Badge
+              variant="default"
+              class="absolute -top-2 -left-2 w-6 h-6 rounded-full bg-sky-700 text-white border border-background dark:border-sky-700 text-xs font-bold flex items-center justify-center shadow-sm z-20 p-0"
             >
               {{ index + 1 }}
-            </div>
+            </Badge>
 
             <!-- Icon circle -->
             <div
