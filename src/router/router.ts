@@ -3,6 +3,9 @@ import { useAuthStore } from '@/stores/authStore'
 import OuterLayout from '@/layout/OuterLayout.vue'
 import InnerLayout from '@/layout/InnerLayout.vue'
 
+//Layout For Users
+import InnerUserLayout from '@/layout/InnerUserLayout.vue'
+
 // Landing Routes
 import LandingView from '@/pages/LandingPage/LandingView.vue'
 
@@ -12,12 +15,16 @@ import AuthPage from '@/pages/auth/Auth.vue'
 // Admin Routes
 // import AdminView from '@/pages/AdminPage/AdminView.vue'
 import DashboardView from '@/pages/AdminPage/dashboard/DashboardView.vue'
-import AdminPermits from '@/pages/AdminPage/permits/components/AdminPermits.vue'
+import AdminPermits from '@/pages/AdminPage/permits/PermitsView.vue'
+import AdminApplications from '@/pages/AdminPage/apllications/ApplicationView.vue'
+import AdminInProgess from '@/pages/AdminPage/inprogress/InProgressView.vue'
+import AdminDenied from '@/pages/AdminPage/denied/DeniedView.vue'
+import AdminApproved from '@/pages/AdminPage/approved/ApprovedView.vue'
 
 // Error Routes
 import AccessDenied from '@/pages/errors/AccessDenied.vue'
 import NotFound from '@/pages/errors/404.vue'
-import HomePage from '@/pages/HomePage/HomePage.vue'
+import HomeView from '@/pages/HomePage/HomeView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -36,12 +43,12 @@ const router = createRouter({
     },
     {
       path: '/home',
-      component: InnerLayout,
+      component: InnerUserLayout,
       children: [
         {
           path: '',
           name: 'home',
-          component: HomePage,
+          component: HomeView,
           meta: { requiresAuth: true },
         },
       ],
@@ -75,24 +82,60 @@ const router = createRouter({
           meta: { requiresAuth: true },
         },
         {
+          path: 'applications',
+          name: 'admin-applications',
+          component: AdminApplications,
+          meta: { requiresAuth: true },
+        },
+        {
           path: 'permits',
           name: 'admin-permits',
           component: AdminPermits,
+          meta: { requiresAuth: true },
+        },
+        {
+          path: 'inprogress',
+          name: 'admin-inprogress',
+          component: AdminInProgess,
+          meta: { requiresAuth: true },
+        },
+        {
+          path: 'denied',
+          name: 'admin-denied',
+          component: AdminDenied,
+          meta: { requiresAuth: true },
+        },
+        {
+          path: 'approved',
+          name: 'admin-approved',
+          component: AdminApproved,
           meta: { requiresAuth: true },
         },
       ],
     },
     {
       path: '/access-denied',
-      name: 'access-denied',
-      component: AccessDenied,
-      meta: { title: 'Access Denied' },
+      component: OuterLayout,
+      children: [
+        {
+          path: '',
+          name: 'access-denied',
+          component: AccessDenied,
+          meta: { title: 'Access Denied' },
+        },
+      ],
     },
     {
       path: '/:pathMatch(.*)*',
-      name: 'page-not-found',
-      component: NotFound,
-      meta: { title: 'Page Not Found' },
+      component: OuterLayout,
+      children: [
+        {
+          path: '',
+          name: 'page-not-found',
+          component: NotFound,
+          meta: { title: 'Page Not Found' },
+        },
+      ],
     },
   ],
 })

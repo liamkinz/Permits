@@ -1,39 +1,12 @@
 <script setup lang="ts">
-import {
-  BarChart3,
-  Users,
-  FileText,
-  Settings,
-  LogOut,
-  Menu,
-  X,
-  Home,
-  Bell,
-  CheckCircle,
-  AlertCircle,
-  Clock,
-} from 'lucide-vue-next'
+import { LogOut, Menu, X } from 'lucide-vue-next'
 import { Button } from '@/components/ui/button'
-import { useAdminSidebar } from '@/lib/useAdminSidebar'
+import { useAdminSidebar } from '@/types/admin-sidebar.types'
+import { navigationItems, menuItems } from '@/utils/admin-sidebar-nav'
 import { useAuthStore } from '@/stores/authStore'
 
 const authStore = useAuthStore()
 const { isOpen, isMobileOpen, toggleSidebar, closeMobileSidebar } = useAdminSidebar()
-
-const navigationItems = [
-  { label: 'Dashboard', icon: Home, href: '/admin/dashboard' },
-  { label: 'Permits', icon: FileText, href: '/admin/permits' },
-  { label: 'Users', icon: Users, href: '#' },
-  { label: 'Applications', icon: BarChart3, href: '#' },
-  { label: 'In Progress', icon: Clock, href: '#' },
-  { label: 'Approved', icon: CheckCircle, href: '#' },
-  { label: 'Denied', icon: AlertCircle, href: '#' },
-]
-
-const menuItems = [
-  { label: 'Settings', icon: Settings, href: '#' },
-  { label: 'Help & Support', icon: Bell, href: '#' },
-]
 </script>
 
 <template>
@@ -47,7 +20,7 @@ const menuItems = [
   <!-- Sidebar -->
   <aside
     :class="[
-      'fixed left-0 top-0 h-screen transition-all duration-300 ease-in-out z-50',
+      'fixed left-0 top-0 h-screen transition-[transform,width] duration-300 ease-out z-50',
       'bg-sidebar border-r border-sidebar-border',
       'flex flex-col',
       isMobileOpen ? 'translate-x-0' : '-translate-x-full',

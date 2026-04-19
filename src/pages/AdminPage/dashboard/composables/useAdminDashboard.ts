@@ -1,10 +1,13 @@
 import { ref, computed } from 'vue'
+import { AlertCircle, AlertTriangle, CheckCircle, Clock } from 'lucide-vue-next'
 import type {
   PermitStatus,
   DashboardStats,
   RecentApplication,
   StatusDistribution,
+  Application,
 } from '../types/admin-dashboard.types'
+import App from '@/App.vue'
 
 // Status color mapping constant - single source of truth
 const STATUS_COLOR_MAP: Record<PermitStatus, string> = {
@@ -182,6 +185,94 @@ export function useAdminDashboard() {
     return status.replace(/_/g, ' ').toUpperCase()
   }
 
+  const applications = ref<Application[]>([
+    {
+      id: 'APP-001',
+      applicantName: 'John Doe',
+      permitType: 'Building Permit',
+      submittedDate: '2026-04-11',
+      dueDate: '2026-05-10',
+      daysRemaining: 10,
+    },
+    {
+      id: 'APP-002',
+      applicantName: 'Jane Smith',
+      permitType: 'Land Use Permit',
+      submittedDate: '2026-04-05',
+      dueDate: '2026-05-05',
+      daysRemaining: 7,
+    },
+    {
+      id: 'APP-003',
+      applicantName: 'Mike Johnson',
+      permitType: 'Environmental Permit',
+      submittedDate: '2026-04-08',
+      dueDate: '2026-05-05',
+      daysRemaining: 6,
+    },
+    {
+      id: 'APP-004',
+      applicantName: 'Sarah Williams',
+      permitType: 'Building Permit',
+      submittedDate: '2026-04-12',
+      dueDate: '2026-05-02',
+      daysRemaining: 4,
+    },
+    {
+      id: 'APP-005',
+      applicantName: 'Robert Brown',
+      permitType: 'Industrial Permit',
+      submittedDate: '2026-04-13',
+      dueDate: '2026-04-28',
+      daysRemaining: 3,
+    },
+  ])
+
+  const getStatusColorOngoing = (daysRemaining: number) => {
+    if (daysRemaining >= 7) {
+      return 'bg-destructive/20 text-destructive hover:bg-destructive/30'
+    } else if (daysRemaining === 6) {
+      return 'bg-yellow-100 text-yellow-700 hover:bg-yellow-200 dark:bg-yellow-900/30 dark:text-yellow-400'
+    } else if (daysRemaining >= 3 && daysRemaining <= 5) {
+      return 'bg-green-100 text-green-700 hover:bg-green-200 dark:bg-green-900/30 dark:text-green-400'
+    } else {
+      return 'bg-destructive/20 text-destructive hover:bg-destructive/30'
+    }
+  }
+
+  const getStatusLabel = (daysRemaining: number) => {
+    if (daysRemaining >= 7) {
+      return 'Overdue'
+    } else if (daysRemaining === 6) {
+      return 'Warning'
+    } else if (daysRemaining >= 3 && daysRemaining <= 5) {
+      return 'Safe'
+    } else {
+      return 'Critical'
+    }
+  }
+
+  // Get status icon component based on days remaining
+  const getStatusIcon = (daysRemaining: number) => {
+    if (daysRemaining >= 7) {
+      return AlertCircle
+    } else if (daysRemaining === 6) {
+      return Clock
+    } else if (daysRemaining >= 3 && daysRemaining <= 5) {
+      return CheckCircle
+    } else {
+      return AlertTriangle
+    }
+  }
+
+  // Calculate days elapsed from submitted date
+  const getDaysElapsed = (submittedDate: string): number => {
+    const days = Math.floor(
+      (Date.now() - new Date(submittedDate).getTime()) / (24 * 60 * 60 * 1000),
+    )
+    return Math.max(days, 0)
+  }
+
   return {
     recentApplications,
     dashboardStats,
@@ -190,8 +281,13 @@ export function useAdminDashboard() {
     maxCount,
     approvalRate,
     avgProcessingTime,
+    applications,
     getDaysAgo,
+    getDaysElapsed,
     getStatusColor,
     formatStatus,
+    getStatusColorOngoing,
+    getStatusLabel,
+    getStatusIcon,
   }
 }

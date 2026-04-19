@@ -82,14 +82,15 @@ const { stats, dashboardStats, recentPermits } = useHeroSection()
             Start for Free
             <ArrowRight class="w-4 h-4 transition-transform group-hover:translate-x-1" />
           </RouterLink>
-          <button
+          <RouterLink
+            to="/watch-demo"
             class="inline-flex items-center gap-2.5 px-7 py-3.5 text-base font-medium text-foreground rounded-xl border border-border hover:border-primary/40 hover:bg-primary/5 transition-all duration-200"
           >
             <span class="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center">
               <Play class="w-3 h-3 text-primary fill-primary translate-x-px" />
             </span>
             Watch Demo
-          </button>
+          </RouterLink>
         </div>
       </div>
 

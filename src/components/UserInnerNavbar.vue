@@ -14,7 +14,7 @@ import {
   X,
 } from 'lucide-vue-next'
 import { Button } from '@/components/ui/button'
-import ModeToggle from './ModeToggle.vue'
+import ModeToggle from './ui/ModeToggle.vue'
 import {
   DropdownMenu,
   DropdownMenuContent,
