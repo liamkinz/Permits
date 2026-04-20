@@ -4,9 +4,10 @@ import { useAuthStore } from '@/stores/authStore'
 import StatsGrid from './components/StatsGrid.vue'
 import MetricsAndCharts from './components/MetricsAndCharts.vue'
 import QuickAction from './components/QuickAction.vue'
+import PieChart from './components/PieChart.vue'
 import RecentApplication from './components/RecentApplication.vue'
 import OngoingEvaluations from './components/OngoingEvaluations.vue'
-
+import BarCharts from './components/BarCharts.vue'
 const authStore = useAuthStore()
 </script>
 
@@ -50,6 +51,12 @@ const authStore = useAuthStore()
 
       <!-- Recent Applications Component -->
       <RecentApplication />
+
+      <!-- Bar Charts Component -->
+      <BarCharts />
+
+      <!-- Pie Chart Component -->
+      <PieChart />
     </div>
   </div>
 </template>
