@@ -131,11 +131,24 @@ a {
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.552 0.016 285.938);
-  --chart-1: oklch(0.785 0.115 274.713);
+  /* --chart-1: oklch(0.785 0.115 274.713);
   --chart-2: oklch(0.585 0.233 277.117);
   --chart-3: oklch(0.511 0.262 276.966);
   --chart-4: oklch(0.457 0.24 277.023);
-  --chart-5: oklch(0.398 0.195 277.366);
+  --chart-5: oklch(0.398 0.195 277.366); */
+
+  --chart-1: oklch(0.86 0.17 92); /* BUILDING PERMIT */
+  --chart-2: oklch(0.76 0.16 56); /* OCCUPANCY PERMIT */
+  --chart-3: oklch(0.87 0.01 286); /* INDIGENOUS PERMIT */
+  --chart-4: oklch(0.73 0.18 350); /* FENCING PERMIT */
+  --chart-5: oklch(76.86% 0.16167 113.609); /* SIGNAGE PERMIT */
+  --chart-6: oklch(0.457 0.24 277.023); /* TEMP. SIGNAGE PERMIT */
+  --chart-7: oklch(0.71 0.14 255); /* ELECTRICAL PERMIT */
+  --chart-8: oklch(0.8 0.18 152); /* ELECTRONIC PERMIT */
+  --chart-9: oklch(0.7 0.1 44); /* SCAVATION PERMIT */
+  --chart-10: oklch(0.4927 0.0662 44); /* DEMOLITION PERMIT */
+  --chart-11: oklch(0.6 0.12 200); /* MECHANICAL PERMIT */
+
   --sidebar: oklch(0.21 0.006 285.885);
   --sidebar-foreground: oklch(0.985 0 0);
   --sidebar-primary: oklch(0.685 0.169 237.323);
