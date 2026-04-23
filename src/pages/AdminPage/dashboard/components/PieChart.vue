@@ -6,62 +6,6 @@ import { usePieCharts } from '../composables/usePieCharts'
 // Register ChartJS components
 ChartJS.register(ArcElement, Tooltip, Legend)
 
-// Register plugin to display data labels outside pie chart
-const dataLabelsPlugin = {
-  id: 'dataLabels',
-  afterDraw(chart: any) {
-    if (chart.data.datasets.length === 0) return
-
-    const { ctx } = chart
-    const meta = chart.getDatasetMeta(0)
-    const data = chart.data.datasets[0].data
-    const labels = chart.data.labels || []
-
-    if (!meta?.data || meta.data.length === 0) return
-
-    meta.data.forEach((datapoint: any, index: number) => {
-      if (!datapoint || datapoint.hidden) return
-
-      const value = data[index]
-      if (typeof value !== 'number' || value === 0) return
-
-      try {
-        // Get arc element position
-        const x = datapoint.x
-        const y = datapoint.y
-        const outerRadius = datapoint.outerRadius || 100
-        const startAngle = Number(datapoint.startAngle) || 0
-        const endAngle = Number(datapoint.endAngle) || 0
-
-        // Calculate midpoint angle
-        const angle = (startAngle + endAngle) / 2
-
-        // Position labels outside the pie
-        const labelDistance = outerRadius + 40
-        const labelX = x + Math.cos(angle - Math.PI / 2) * labelDistance
-        const labelY = y + Math.sin(angle - Math.PI / 2) * labelDistance
-
-        // Draw value
-        ctx.fillStyle = '#000000'
-        ctx.font = 'bold 13px Arial'
-        ctx.textAlign = 'center'
-        ctx.textBaseline = 'middle'
-        ctx.fillText(String(value), labelX, labelY)
-
-        // Draw label
-        ctx.fillStyle = '#666666'
-        ctx.font = 'normal 10px Arial'
-        const label = String(labels[index] || '').replace(' Permits', '')
-        ctx.fillText(label, labelX, labelY + 15)
-      } catch (e) {
-        console.error(`Label error at index ${index}:`, e)
-      }
-    })
-  },
-}
-
-ChartJS.register(dataLabelsPlugin)
-
 // Use composable
 const {
   chartData,
@@ -153,7 +97,7 @@ const {
       </div>
 
       <!-- Chart.js Pie Chart -->
-      <div class="w-full" style="height: 550px">
+      <div class="w-full h-80">
         <Pie :data="chartData" :options="chartOptions" />
       </div>
     </div>

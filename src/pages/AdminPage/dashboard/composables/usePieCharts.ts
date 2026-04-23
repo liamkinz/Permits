@@ -304,13 +304,7 @@ export function usePieCharts() {
   const chartOptions = computed(() => ({
     responsive: true,
     maintainAspectRatio: false,
-    layout: {
-      padding: 100,
-    },
     plugins: {
-      dataLabels: {
-        enabled: true,
-      },
       legend: {
         display: true,
         position: 'right' as const,
