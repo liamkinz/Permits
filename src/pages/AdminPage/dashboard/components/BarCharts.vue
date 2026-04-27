@@ -14,6 +14,36 @@ import { useBarCharts } from '../composables/useBarCharts'
 // Register ChartJS components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
+// Register plugin to display data labels
+const dataLabelsPlugin = {
+  id: 'dataLabels',
+  afterDatasetsDraw(chart: any) {
+    const { ctx, data, chartArea } = chart
+    ctx.save()
+    ctx.font = 'bold 10px Arial'
+    ctx.textAlign = 'center'
+    ctx.textBaseline = 'bottom'
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.9)'
+
+    data.datasets.forEach((dataset: any, datasetIndex: number) => {
+      const meta = chart.getDatasetMeta(datasetIndex)
+      if (!meta.hidden) {
+        meta.data.forEach((bar: any, index: number) => {
+          const value = dataset.data[index]
+          if (value !== null && value !== undefined) {
+            const x = bar.x
+            const y = bar.y
+            ctx.fillText(value.toString(), x, y - 5)
+          }
+        })
+      }
+    })
+    ctx.restore()
+  },
+}
+
+ChartJS.register(dataLabelsPlugin)
+
 // Use composable
 const {
   chartData,
