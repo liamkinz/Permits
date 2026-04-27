@@ -57,7 +57,7 @@ export function usePieCharts() {
     },
     {
       month: 'February',
-      building: 52,
+      building: 12,
       occupancy: 38,
       indigenous: 22,
       fencing: 28,
@@ -109,7 +109,7 @@ export function usePieCharts() {
       electronic: 13,
       excavation: 7,
       demolition: 4,
-      mechanical: 9,
+      mechanical: 32,
     },
     {
       month: 'June',
@@ -165,7 +165,7 @@ export function usePieCharts() {
       electronic: 14,
       excavation: 8,
       demolition: 4,
-      mechanical: 10,
+      mechanical: 28,
     },
     {
       month: 'October',
@@ -193,7 +193,7 @@ export function usePieCharts() {
       electronic: 20,
       excavation: 12,
       demolition: 8,
-      mechanical: 14,
+      mechanical: 50,
     },
     {
       month: 'December',
@@ -207,7 +207,7 @@ export function usePieCharts() {
       electronic: 19,
       excavation: 11,
       demolition: 7,
-      mechanical: 13,
+      mechanical: 14,
     },
   ])
 
@@ -297,6 +297,7 @@ export function usePieCharts() {
           themeColors.value.chart11,
         ],
         borderWidth: 0,
+        spacing: 0,
       },
     ],
   }))
@@ -304,6 +305,8 @@ export function usePieCharts() {
   const chartOptions = computed(() => ({
     responsive: true,
     maintainAspectRatio: false,
+    cutout: '60%',
+    spacing: 0,
     plugins: {
       legend: {
         display: true,
@@ -314,6 +317,9 @@ export function usePieCharts() {
         },
       },
       tooltip: {
+        enabled: true,
+        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+        padding: 12,
         callbacks: {
           label: function (context: any) {
             const label = context.label || ''
